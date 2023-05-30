@@ -13,7 +13,7 @@ module.exports.list = () =>{
 }
 
 module.exports.interface = () =>{
-    return Plantas.find({},{"Id":1,"Freguesia":1,"Espécie":1,"Estado":1,"Número de Intervenções":1})
+    return Plantas.find({},{"_id":1,"Id":1,"Freguesia":1,"Espécie":1,"Estado":1,"Número de Intervenções":1})
                 .then(dados=>{
                     return dados
                 }
