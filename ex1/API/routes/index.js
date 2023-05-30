@@ -3,6 +3,25 @@ var router = express.Router();
 var Plantas = require('../controler/plantas')
 
 /* GET home page. */
+router.get('/interface', function(req, res, next) {
+  Plantas.interface()
+    .then(plantas=>{
+      res.json(plantas)
+    })
+    .catch(erro=>{
+      res.status(602).json({ message: "Erro a obter Plantas",error:erro })
+    })
+});
+router.get('/count', function(req, res, next) {
+  Plantas.contador()
+    .then(plantas=>{
+      res.json(plantas)
+    })
+    .catch(erro=>{
+      res.status(602).json({ message: "Erro a obter Plantas",error:erro })
+    })
+});
+
 router.get('/plantas', function(req, res, next) {
   if(req.query.especie){
     Plantas.getespecie(req.query.especie)
@@ -55,7 +74,7 @@ router.get('/plantas/especies', function(req, res, next) {
 });
 
 router.get('/plantas/:id', function(req, res, next) {
-  Plantas.getPlantas(req.params.id)
+  Plantas.getPlanta(req.params.id)
     .then(plantas=>{
       res.json(plantas)
     })

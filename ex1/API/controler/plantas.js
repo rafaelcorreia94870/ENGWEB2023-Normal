@@ -12,8 +12,30 @@ module.exports.list = () =>{
                 })
 }
 
+module.exports.interface = () =>{
+    return Plantas.find({},{"Id":1,"Freguesia":1,"Espécie":1,"Estado":1,"Número de Intervenções":1})
+                .then(dados=>{
+                    return dados
+                }
+                )
+                .catch(erro=>{
+                   return erro
+                })
+}
+
+module.exports.contador = () =>{
+    return Plantas.count()
+                .then(dados=>{
+                    return dados
+                }
+                )
+                .catch(erro=>{
+                   return erro
+                })
+}
+
 module.exports.getPlanta = id =>{
-    return Plantas.findOne({_id:id})
+    return Plantas.findOne({"Id":id})
                 .then(dados=>{
                     return dados
                 }
