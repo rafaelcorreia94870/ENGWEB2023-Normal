@@ -1,0 +1,45 @@
+1.1 Analisei o documento plantas.json e vi que parecia tudo bem (exceto que o Id devia ser _id ,mas o mongo gera automaticamente um _id por isso nao há problema), a partir do MongoDB Compass eu criei uma base de dados com o nome plantas e uma coleção denuminada de plantas também. A seguir importei o ficheiro e tudo correu sem problemas.
+1.2
+    use plantas
+    1. db.plantas.count()
+        29617
+    2. db.plantas.find({Freguesia:"São Domingos de Rana"}).count()
+    5903
+    3. db.plantas.distinct("Freguesia")
+    [
+      '',
+      'Abóboda',
+      'Alcabideche',
+      'São Domingos de Rana',
+      'U.F. Carcavelos e Parede',
+      'U.F. Cascais e Estoril'
+    ]
+
+    4.db.plantas.aggregate([{$group: {_id:"$Freguesia", count: {$sum: 1}}}])
+    {
+      _id: 'U.F. Cascais e Estoril',
+      count: 12023
+    }
+    {
+      _id: 'Abóboda',
+      count: 2
+    }
+    {
+      _id: 'São Domingos de Rana',
+      count: 5903
+    }
+    {
+      _id: 'Alcabideche',
+      count: 4034
+    }
+    {
+      _id: '',
+      count: 26
+    }
+    {
+      _id: 'U.F. Carcavelos e Parede',
+      count: 7629
+    }
+    5. db.plantas.aggregate([{$group: {_id:"$Espécie", count: {$sum: 1}}}])
+    (não meto aqui a resposta da query que é muito comprida)
+    
